@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ex1_BE;
-namespace DS
+namespace Ex1_DS
 {
     public class DataSource
     {    
