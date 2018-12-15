@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DS
+namespace DAL
 {
-    public class DataSource
+    class imp_Dal
     {
-        public 
     }
 }

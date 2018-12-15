@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex1_BE
 {
-    class Test
+    public class Test
     {
     }
 }

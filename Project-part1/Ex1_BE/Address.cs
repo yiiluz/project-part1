@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex1_BE
 {
-    struct Address
+    public struct Address
     {
         string city;
         string street;
