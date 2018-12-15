@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ex1_BE;
-using DS;
-namespace DAL
+using Ex1_DS;
+namespace Ex1_DAL
 {
     class Dal_imp : IDAL
     {     
@@ -22,7 +22,10 @@ namespace DAL
 
         void  IDAL.AddTest(Test t)
         {
-            DataSource.
+            if (t.)
+            {
+
+            }
         }
 
         void IDAL.AddTester(Tester t)
