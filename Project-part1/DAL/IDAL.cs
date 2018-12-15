@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ex1_BE;
-namespace DAL
+
+namespace Ex1_DAL
 {  
-    interface IDAL
+    public interface IDAL
     {
         void AddTester(Tester T);
         void RemoveTester(Tester T);
