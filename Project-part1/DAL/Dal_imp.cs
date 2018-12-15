@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Ex1_BE;
 using DS;
-namespace DAL
+namespace Ex1_DAL
 {
-    class Dal_imp : IDAL
+    public class Dal_imp : IDAL
     {
         protected Dal_imp() { }
         protected static Dal_imp instance = null;

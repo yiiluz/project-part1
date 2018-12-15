@@ -8,19 +8,22 @@ namespace Ex1_BE
 {
     public class Test
     {
-        int[] testId = new int[8];
+        int testId;
         int testerId;
         int traineeId;
         DateTime dateOfTest;
         Address startTestAddress;
+        CarTypeEnum carType;
         bool distanceKeeping;
         bool reverseParking;
         bool mirrorsCheck;
         bool signals;
         bool correctSpeed;
         bool isPassed;
+        bool isHaveId;
 
-        public int[] TestId
+
+        public int TestId
         {
             get => testId;
             set => testId = value;
@@ -70,6 +73,8 @@ namespace Ex1_BE
             get => isPassed;
             set => isPassed = value;
         }
+        public bool IsHaveId { get => isHaveId; set => isHaveId = value; }
+        public CarTypeEnum CarType { get => carType; set => carType = value; }
         internal Address StartTestAddress
         {
             get => startTestAddress;

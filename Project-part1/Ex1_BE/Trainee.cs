@@ -21,6 +21,10 @@ namespace Ex1_BE
         string schoolName;
         string teacherName;
         int numOfFinishedLessons;
+        int numOfTests;
+        bool isAlreadyDidTest;
+        DateTime lastTest;
+        public List<CarTypeEnum> existingLicenses;
 
         public int Id
         {
@@ -44,15 +48,7 @@ namespace Ex1_BE
         public DateTime DateOfBirth
         {
             get => dateOfBirth;
-            set
-            {
-                DateTime now = DateTime.Now;
-                now.AddYears(-18);
-                if (value < now)
-                    throw new Exception("Can't add Trainee under age 18");
-                else
-                    dateOfBirth = value;
-            }
+            set => dateOfBirth = value;
         }
         public int PhoneNumber
         {
@@ -94,6 +90,19 @@ namespace Ex1_BE
             get => gender;
             set => gender = value;
         }
+        public int NumOfTests
+        {
+            get => numOfTests;
+            set => numOfTests = value;
+        }
+        public bool IsAlreadyDidTest
+        {
+            get => isAlreadyDidTest;
+            set => isAlreadyDidTest = value;
+        }
+        public DateTime LastTest { get => lastTest; set => lastTest = value; }
+        public List<CarTypeEnum> ExistingLicenses { get => existingLicenses; set => existingLicenses = value; }
+
         public string ToString()
         {
             string tmp = "Tester name: " + FirstName + " " + LastName + ".\nID: " + Id + ".\nGender: " + Gender + ".\nDate Of Birth: " + DateOfBirth +

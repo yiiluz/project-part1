@@ -21,7 +21,7 @@ namespace Ex1_BE
         double seniority;
         int maxTestsPerWeek;
         CarTypeEnum typeOfCar;
-        bool[,] workTime = new bool[5, 6];
+        bool[,] availableWorkTime = new bool[5, 6];
         double maxDistance;
 
         public int Id
@@ -45,15 +45,7 @@ namespace Ex1_BE
         /// </summary>
         public DateTime DateOfBirth {
             get => dateOfBirth;
-            set
-            {
-                DateTime now = DateTime.Now;
-                now.AddYears(-18);
-                if (value < now)
-                    throw new Exception("Can't add Tester under age 18");
-                else
-                    dateOfBirth = value;
-            }
+            set => dateOfBirth = value;
         }
         public int PhoneNumber
         {
@@ -70,10 +62,10 @@ namespace Ex1_BE
             get => maxTestsPerWeek;
             set => maxTestsPerWeek = value;
         }
-        public bool[,] WorkTime
+        public bool[,] AvailableWorkTime
         {
-            get => workTime;
-            set => workTime = value;
+            get => availbleWorkTime;
+            set => availbleWorkTime = value;
         }
         public double MaxDistance
         {
