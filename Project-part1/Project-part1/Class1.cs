@@ -9,5 +9,6 @@ namespace Project_part1
     public class Class1
     {
         int a;
+        int t;
     }
 }
