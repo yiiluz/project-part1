@@ -8,14 +8,14 @@ namespace DAL
 {  
     interface Idal
     {
-        void addTest(Object T);
-        void removeTest(Object T);
-        void updateTestDetails(Object T);
-        void addStudent(Object T);
-        void removeStudent(Object T);
-        void updateStudentDetails(Object T);
-        Object getListOfAllExaminers();
-        Object getListAllStudents();
-        Object gatListAllTests();
+        void addTest(Ex1_BE.Test T);
+        void removeTest(Ex1_BE.Test T);
+        void updateTestDetails(Ex1_BE.Test T);
+        void addStudent(Ex1_BE.Trainee T);
+        void removeStudent(Ex1_BE.Trainee T);
+        void updateStudentDetails(Ex1_BE.Trainee T);
+        Ex1_BE.Tester getListOfAllExaminers();
+        Ex1_BE.Trainee getListAllStudents();
+        Ex1_BE.Test gatListAllTests();
     }
 }
