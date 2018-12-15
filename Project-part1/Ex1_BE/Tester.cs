@@ -9,7 +9,7 @@ namespace Ex1_BE
     /// <summary>
     /// this class represent a tester object
     /// </summary>
-    class Tester
+  public  class Tester
     {
         int id;
         string lastName;
