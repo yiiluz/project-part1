@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {  
-    interface Idal
+    interface IDAL
     {
         void addTest(Ex1_BE.Test T);
         void removeTest(Ex1_BE.Test T);
