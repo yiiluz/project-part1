@@ -8,7 +8,7 @@ namespace Ex1_BE
 {
    public class Trainee
     {
-
+        
         int id;
         string lastName;
         string firstName;
