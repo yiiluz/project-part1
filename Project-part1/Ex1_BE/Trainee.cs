@@ -8,6 +8,7 @@ namespace Ex1_BE
 {
     class Trainee
     {
+
         int id;
         string lastName;
         string firstName;
@@ -16,6 +17,11 @@ namespace Ex1_BE
         int phoneNumber;
         Address address;
         CarTypeEnum typeOfCar;
+        GearboxTypeEnum typeOfGearbox;
+        string schoolName;
+        string teacherName;
+        int numOfFinishedLessons;
+
         public int Id
         {
             get => id;
@@ -53,10 +59,48 @@ namespace Ex1_BE
             get => phoneNumber;
             set => phoneNumber = value;
         }
+        public string SchoolName
+        {
+            get => schoolName;
+            set => schoolName = value;
+        }
+        public string TeacherName
+        {
+            get => teacherName;
+            set => teacherName = value;
+        }
+        public int NumOfFinishedLessons
+        {
+            get => numOfFinishedLessons;
+            set => numOfFinishedLessons = value;
+        }
         internal CarTypeEnum TypeOfCar
         {
             get => typeOfCar;
             set => typeOfCar = value;
+        }
+        internal GearboxTypeEnum TypeOfGearbox
+        {
+            get => typeOfGearbox;
+            set => typeOfGearbox = value;
+        }
+        internal Address Address
+        {
+            get => address;
+            set => address = value;
+        }
+        internal GenderEnum Gender
+        {
+            get => gender;
+            set => gender = value;
+        }
+        public string ToString()
+        {
+            string tmp = "Tester name: " + FirstName + " " + LastName + ".\nID: " + Id + ".\nGender: " + Gender + ".\nDate Of Birth: " + DateOfBirth +
+                ".\nPhone number: " + PhoneNumber + ".\nAddress: " + Address + ".\nType of car: " + TypeOfCar +
+                ".\nType of Gearbox: " + TypeOfGearbox + ".\nSchool name: " + SchoolName +
+                ".\nTeacher name: " + TeacherName + ".\nSum of pased lessons: " + numOfFinishedLessons + ".\n";
+            return tmp;
         }
     }
 }

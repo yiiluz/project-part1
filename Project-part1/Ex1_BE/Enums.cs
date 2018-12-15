@@ -8,4 +8,5 @@ namespace Ex1_BE
 {
     enum GenderEnum { Male = 1, Female = 2 }
     enum CarTypeEnum { MotorCycle = 1, PrivateCar, Truck12Tons, TruckUnlimited }
+    enum GearboxTypeEnum { auto = 1, manual = 2 }
 }
