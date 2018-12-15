@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D2CB88BF-1D47-4BDB-A267-3CC8863BA7A9}</ProjectGuid>
+    <ProjectGuid>{DC70CF26-45EF-4F36-8568-14BBC2F35198}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>DS</RootNamespace>
+    <AssemblyName>DS</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Idal.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\Ex1_DAL.csproj">
+      <Project>{d2cb88bf-1d47-4bdb-a267-3cc8863ba7a9}</Project>
+      <Name>Ex1_DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ex1_BE\Ex1_BE.csproj">
       <Project>{72dd2b14-755b-4c2e-87b2-1c847ae689e0}</Project>
       <Name>Ex1_BE</Name>
