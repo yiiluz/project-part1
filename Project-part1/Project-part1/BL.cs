@@ -29,16 +29,30 @@ namespace Project_part1
         {
             var trainee = instance.GetTraineeList().Find(x => x.Id == t.TraineeId);
             var tester = instance.GetTestersList().Find(x => x.Id == t.TesterId);
-            if ((trainee != null) && (trainee.IsAlreadyDidTest) && ((t.DateOfTest.Day - trainee.LastTest.Day) < 7))
+            if (tester == null)
+                throw new Exception("tester doesnt exist");
+            if (trainee == null)
+                throw new Exception("trainee doesnt exist");
+            if ((trainee.IsAlreadyDidTest) && ((t.DateOfTest.Day - trainee.LastTest.Day) < 7))
                 throw new Exception("Can't add the test " + t.TestId + ". must pass anlist 7 days from trainee last test.");
-            else if ((trainee != null) && (trainee.NumOfFinishedLessons < 20))
+            else if (trainee.NumOfFinishedLessons < 20)
                 throw new Exception("Can't add the test " + t.TestId + ". the trainee " + trainee.FirstName + " " + trainee.LastName
                     + " is not done enough lessons");
             else if (!(tester.AvailableWorkTime[t.DateOfTest.Day, t.DateOfTest.Hour]))
                 throw new Exception("The tester is unavailable in the test date.");
-            else if ((trainee != null) && ((trainee.ExistingLicenses).Exists(x => x == t.CarType)))
+            else if ((trainee.ExistingLicenses).Exists(x => x == t.CarType))
                 throw new Exception("The trainee " + trainee.FirstName + " " + trainee.LastName + " already passed test of " + t.CarType + ".");
-
+            else if (tester.NumOfTestOfCurrWeek == tester.MaxTestsPerWeek)
+                throw new Exception("Tester already done " + tester.MaxTestsPerWeek + " tests this week.");
+            if (t.DateOfTest < DateTime.Now)
+            {
+                tester.NumOfTestOfCurrWeek++;
+                trainee.IsAlreadyDidTest = true;
+                trainee.LastTest = t.DateOfTest;
+            }
+            if (t.IsPassed)
+                trainee.ExistingLicenses.Add(t.CarType);
+            tester.NumOfTestOfCurrWeek++;
             instance.AddTest(t);
         }
 
