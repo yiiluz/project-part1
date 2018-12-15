@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
-{  
-    interface IDAL
+namespace Project_part1
+{
+    public interface IBL
     {
         void addTest(Object T);
         void removeTest(Object T);
