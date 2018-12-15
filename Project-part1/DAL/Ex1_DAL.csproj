@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dal_imp.cs" />
     <Compile Include="IDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DS\DS.csproj">
+      <Project>{dc70cf26-45ef-4f36-8568-14bbc2f35198}</Project>
+      <Name>DS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ex1_BE\Ex1_BE.csproj">
       <Project>{72dd2b14-755b-4c2e-87b2-1c847ae689e0}</Project>
       <Name>Ex1_BE</Name>

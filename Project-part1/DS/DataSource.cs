@@ -8,17 +8,17 @@ namespace DS
     public class DataSource
     {
         protected static DataSource dataSource = null;
-        private static List<Ex1_BE.Test> tests;
-        private static List<Ex1_BE.Tester> testers;
-        private static List<Ex1_BE.Trainee> trainees;
-        public Ex1_BE.Test GatListAllTests()
+        public static List<Ex1_BE.Test> tests;
+        public static List<Ex1_BE.Tester> testers;
+        public static List<Ex1_BE.Trainee> trainees;
+        public static DataSource getDataSource()
         {
             if (dataSource==null)
             {
                 dataSource = new DataSource();
-                return tests;
+                return dataSource;
             }
-            return tests;
+            return dataSource;
         }
     }
 }
