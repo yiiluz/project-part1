@@ -20,6 +20,7 @@ namespace Ex1_BE
         Address address;
         double seniority;
         int maxTestsPerWeek;
+        int numOfTestOfCurrWeek;
         CarTypeEnum typeOfCar;
         bool[,] availableWorkTime = new bool[5, 6];
         double maxDistance;
@@ -72,6 +73,7 @@ namespace Ex1_BE
             get => maxDistance;
             set => maxDistance = value;
         }
+        public int NumOfTestOfCurrWeek { get => numOfTestOfCurrWeek; set => numOfTestOfCurrWeek = value; }
         internal GenderEnum Gender
         {
             get => gender;
