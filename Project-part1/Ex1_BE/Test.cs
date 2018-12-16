@@ -8,7 +8,7 @@ namespace Ex1_BE
 {
     public class Test
     {
-        int testId;
+        string testId;
         int testerId;
         int traineeId;
         DateTime dateOfTest;
@@ -23,7 +23,7 @@ namespace Ex1_BE
         bool isHaveId;
 
 
-        public int TestId
+        public string TestId
         {
             get => testId;
             set => testId = value;

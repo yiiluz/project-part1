@@ -22,20 +22,40 @@ namespace Ex1_DAL
 
         void  IDAL.AddTest(Test t)
         {
-            if (t.)
+            if (t.IsHaveId==false)
             {
-
+                t.TestId = string.Format("00000000", Configuration.TestId++);
+                DataSource.tests.Add(t);
+            }
+            else
+            {
+                throw  new Exception("The test already exists in the system ");
             }
         }
 
+        
         void IDAL.AddTester(Tester t)
         {
-            DataSource.testers.Add(t);
+            if (DataSource.testers.Find(x => x.Id == t.Id) != null)
+            {
+                throw new Exception("This tester is already registered in the system");
+            }
+            else
+            {
+                DataSource.testers.Add(t);
+            }
         }
 
         void IDAL.AddTrainee(Trainee t)
         {
-            DataSource.trainees.Add(t);
+            if (DataSource.trainees.Find(x=> x.Id == t.Id) != null)
+            {
+                throw new Exception("This trainee is already registered in the system");
+            }
+            else
+            {
+                DataSource.trainees.Add(t);
+            }
         }
 
         List<Tester> IDAL.GetTestersList()
@@ -63,6 +83,10 @@ namespace Ex1_DAL
             {
                DataSource.testers.Remove(DataSource.testers.Find(x => x.Id == T.Id));
             }
+            else
+            {
+                throw new Exception("This tester does not exist in the system");
+            }
         }
 
         void IDAL.RemoveTrainee(Trainee T)
@@ -70,6 +94,10 @@ namespace Ex1_DAL
             if (DataSource.trainees.Find(x => x.Id == T.Id) != null)
             {
                 DataSource.trainees.Remove(DataSource.trainees.Find(x => x.Id == T.Id));
+            }
+            else
+            {
+                throw new Exception("This trainee does not exist in the system");
             }
         }
 
@@ -80,6 +108,10 @@ namespace Ex1_DAL
             {
                 DataSource.tests[index] = t;
             }
+            else
+            {
+                throw new Exception("This test does not exist in the system");
+            }
         }
 
         void IDAL.UpdateTesterDetails(Tester T)
@@ -89,6 +121,10 @@ namespace Ex1_DAL
             {
                 DataSource.testers[index] =T;
             }
+            else
+            {
+                throw new Exception("This tester does not exist in the system");
+            }
         }
 
         void IDAL.UpdateTraineeDetails(Trainee T)
@@ -97,6 +133,10 @@ namespace Ex1_DAL
             if (index > -1)
             {
                 DataSource.trainees[index] = T;
+            }
+            else
+            {
+                throw new Exception("this trainee does not exist in the system");
             }
         }
     }
