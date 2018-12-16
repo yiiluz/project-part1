@@ -7,7 +7,7 @@ using Ex1_BE;
 using Ex1_DS;
 namespace Ex1_DAL
 {
-    class Dal_imp : IDAL
+    public class Dal_imp : IDAL
     {     
         protected Dal_imp() { }
         protected static Dal_imp instance = null;
@@ -29,7 +29,7 @@ namespace Ex1_DAL
             }
             else
             {
-                throw  new Exception("The test already exists in the system ");
+                throw  new DuplicateWaitObjectException("The test already exists in the system ");
             }
         }
 
@@ -38,7 +38,7 @@ namespace Ex1_DAL
         {
             if (DataSource.testers.Find(x => x.Id == t.Id) != null)
             {
-                throw new Exception("This tester is already registered in the system");
+                throw new DuplicateWaitObjectException("This tester is already registered in the system");
             }
             else
             {
@@ -50,7 +50,7 @@ namespace Ex1_DAL
         {
             if (DataSource.trainees.Find(x=> x.Id == t.Id) != null)
             {
-                throw new Exception("This trainee is already registered in the system");
+                throw new DuplicateWaitObjectException("This trainee is already registered in the system");
             }
             else
             {
@@ -85,7 +85,7 @@ namespace Ex1_DAL
             }
             else
             {
-                throw new Exception("This tester does not exist in the system");
+                throw new KeyNotFoundException("This tester does not exist in the system");
             }
         }
 
@@ -97,7 +97,7 @@ namespace Ex1_DAL
             }
             else
             {
-                throw new Exception("This trainee does not exist in the system");
+                throw new KeyNotFoundException("This trainee does not exist in the system");
             }
         }
 
@@ -110,7 +110,7 @@ namespace Ex1_DAL
             }
             else
             {
-                throw new Exception("This test does not exist in the system");
+                throw new KeyNotFoundException("This test does not exist in the system");
             }
         }
 
@@ -136,7 +136,7 @@ namespace Ex1_DAL
             }
             else
             {
-                throw new Exception("this trainee does not exist in the system");
+                throw new KeyNotFoundException("this trainee does not exist in the system");
             }
         }
     }

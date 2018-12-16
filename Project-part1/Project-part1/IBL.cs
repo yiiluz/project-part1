@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ex1_BE;
 
-namespace Project_part1
+namespace Ex1_BL
 {
     public interface IBL
     {

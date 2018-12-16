@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Ex1_DAL;
 using Ex1_BE;
 
-namespace Project_part1
+namespace Ex1_BL
 {
-    class BL : IBL
+    public class BL : IBL
     {
         IDAL instance = Dal_imp.GetInstance();
         void AddTester(Tester t)
@@ -16,14 +16,50 @@ namespace Project_part1
             if (t.DateOfBirth.Year < ((DateTime.Now).Year - 40))
                 throw new Exception("Can't add the tester " + t.FirstName + " " + t.LastName + ". tester age must be above 40.");
             else
-                instance.AddTester(t);
+            {
+                try
+                {
+                    instance.AddTester(t);
+                }
+                catch (DuplicateWaitObjectException)
+                {
+                    //תעשה מה שבאלך
+                    throw;
+                }
+              
+            }
+        }
+        void RemoveTester(Tester T)
+        {
+            // כאן אתה אמור לכתוב לוגיקה ולא הבנתי אם אתה אמור לבדוק שאתה אכן מוחק מישהו מהמערכת למה אני בשכבת הדל אמור לבדור זאת שוב 
+            //ככה כתוב בהוראות וזה נשמע לי מסורבל וטיפשי
+            try
+            {
+                instance.RemoveTester(T);
+            }
+            catch (KeyNotFoundException)
+            {
+
+                throw;
+            }
         }
         void AddTrainee(Trainee t)
         {
             if (t.DateOfBirth.Year < ((DateTime.Now).Year - 18))
                 throw new Exception("Can't add the trainee " + t.FirstName + " " + t.LastName + ". trainee age must be above 18.");
             else
-                instance.AddTrainee(t);
+            {
+                try
+                {
+                    instance.AddTrainee(t);
+                }
+                catch (DuplicateWaitObjectException)
+                {
+                    //איציק תכתוב פה מה שבזין שלך
+                    throw;
+                }
+              
+            }
         }
         void AddTest(Test t)
         {
@@ -53,8 +89,21 @@ namespace Project_part1
             if (t.IsPassed)
                 trainee.ExistingLicenses.Add(t.CarType);
             tester.NumOfTestOfCurrWeek++;
-            instance.AddTest(t);
+            try
+            {
+                instance.AddTest(t);
+            }
+            catch (DuplicateWaitObjectException)
+            {
+                //איציק תכתוב מה שבא לך
+                throw;
+            }
+            
         }
-
+      public List<Tester> AvailableTeache(DateTime time)
+        {
+            List<Tester> AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime == time;
+            return AvailableTesters;
+        }
     }
 }

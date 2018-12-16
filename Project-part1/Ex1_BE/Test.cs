@@ -73,14 +73,20 @@ namespace Ex1_BE
             get => isPassed;
             set => isPassed = value;
         }
-        public bool IsHaveId { get => isHaveId; set => isHaveId = value; }
+
+        public bool IsHaveId
+        {
+            get => isHaveId;
+            set => isHaveId = value;
+        }
         public CarTypeEnum CarType { get => carType; set => carType = value; }
         internal Address StartTestAddress
         {
             get => startTestAddress;
             set => startTestAddress = value;
         }
-        public string ToString()
+
+        override public string ToString()
         {
             string tmp = "Test ID: " + TestId + ".\nTester ID: " + TesterId + ".\nTrainee ID: " + TraineeId + ".\nDate of Test: " +
                 DateOfTest + ".\nTest-start address: " + StartTestAddress + ".\n" + (IsPassed ? "Trainee pass" : "Trainee didn't pass") + ".\n";
