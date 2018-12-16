@@ -89,6 +89,7 @@ namespace Ex1_BL
             if (t.IsPassed)
                 trainee.ExistingLicenses.Add(t.CarType);
             tester.NumOfTestOfCurrWeek++;
+            tester.AvailableWorkTime[(int)t.DateOfTest.DayOfWeek, t.DateOfTest.Hour] = false;
             try
             {
                 instance.AddTest(t);
@@ -102,8 +103,28 @@ namespace Ex1_BL
         }
       public List<Tester> AvailableTeache(DateTime time)
         {
-            List<Tester> AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime == time;
-            return AvailableTesters;
+            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item. select item;
+            return (List<Tester>)AvailableTesters;            
         }
+        public int NumberOfTestsTested(Trainee t)
+        {
+            return t.NumOfTests;
+        }
+        public bool IsEntitledToALicenseOrNot(Trainee T, CarTypeEnum car)
+        {
+
+            return T.ExistingLicenses.Exists(x => x == car);
+        }
+        List<Test> TheTestsWillBeDoneToday_Month(DateTime t,bool Byday)
+        {
+            if (Byday==true)
+            {
+                var toDay = from item in instance.GetTestsList() where item.DateOfTest.DayOfYear == t.DayOfYear select item;
+                return (List<Test>)toDay;
+            }
+            var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month== t.Month select item;
+            return (List<Test>)ThisMonth;
+        }
+
     }
 }
