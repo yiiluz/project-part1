@@ -6,24 +6,60 @@ using System.Threading.Tasks;
 using Ex1_DAL;
 using Ex1_BE;
 
-namespace Project_part1
+namespace Ex1_BL
 {
-    class BL //: IBL
+    public class BL : IBL
     {
-        IDAL instance;// = Dal_imp.GetInstance();
+        IDAL instance = Dal_imp.GetInstance();
         void AddTester(Tester t)
         {
             if (t.DateOfBirth.Year < ((DateTime.Now).Year - 40))
                 throw new Exception("Can't add the tester " + t.FirstName + " " + t.LastName + ". tester age must be above 40.");
             else
-                instance.AddTester(t);
+            {
+                try
+                {
+                    instance.AddTester(t);
+                }
+                catch (DuplicateWaitObjectException)
+                {
+                    //תעשה מה שבאלך
+                    throw;
+                }
+              
+            }
+        }
+        void RemoveTester(Tester T)
+        {
+            // כאן אתה אמור לכתוב לוגיקה ולא הבנתי אם אתה אמור לבדוק שאתה אכן מוחק מישהו מהמערכת למה אני בשכבת הדל אמור לבדור זאת שוב 
+            //ככה כתוב בהוראות וזה נשמע לי מסורבל וטיפשי
+            try
+            {
+                instance.RemoveTester(T);
+            }
+            catch (KeyNotFoundException)
+            {
+
+                throw;
+            }
         }
         void AddTrainee(Trainee t)
         {
             if (t.DateOfBirth.Year < ((DateTime.Now).Year - 18))
                 throw new Exception("Can't add the trainee " + t.FirstName + " " + t.LastName + ". trainee age must be above 18.");
             else
-                instance.AddTrainee(t);
+            {
+                try
+                {
+                    instance.AddTrainee(t);
+                }
+                catch (DuplicateWaitObjectException)
+                {
+                    //איציק תכתוב פה מה שבזין שלך
+                    throw;
+                }
+              
+            }
         }
         void AddTest(Test t)
         {
@@ -53,8 +89,46 @@ namespace Project_part1
             if (t.IsPassed)
                 trainee.ExistingLicenses.Add(t.CarType);
             tester.NumOfTestOfCurrWeek++;
-            instance.AddTest(t);
+            tester.AvailableWorkTime[(int)t.DateOfTest.DayOfWeek, t.DateOfTest.Hour] = false;
+            try
+            {
+                instance.AddTest(t);
+            }
+            catch (DuplicateWaitObjectException)
+            {
+                //איציק תכתוב מה שבא לך
+                throw;
+            }
+            
         }
+      public List<Tester> AvailableTeache(DateTime time)
+        {
+            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item. select item;
+            return (List<Tester>)AvailableTesters;            
+        }
+        public int NumberOfTestsTested(Trainee t)
+        {
+            return t.NumOfTests;
+        }
+        public bool IsEntitledToALicenseOrNot(Trainee T, CarTypeEnum car)
+        {
 
+            return T.ExistingLicenses.Exists(x => x == car);
+        }
+       public List<Test> TheTestsWillBeDoneToday_Month(DateTime t,bool Byday)
+        {
+            if (Byday==true)
+            {
+                var toDay = from item in instance.GetTestsList() where item.DateOfTest.DayOfYear == t.DayOfYear select item;
+                return (List<Test>)toDay;
+            }
+            var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month== t.Month select item;
+            return (List<Test>)ThisMonth;
+        }
+       public List<Test> SomeLaggingCondition(Func<Test,bool> func)
+        {
+            var StandOnTheCondition = from item in instance.GetTestsList() where func(item) == true select item;
+            return (List<Test>)StandOnTheCondition;
+        }
     }
 }

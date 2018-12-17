@@ -90,7 +90,7 @@ namespace Ex1_BE
             set => typeOfCar = value;
         }
 
-        public string ToString()
+        override public string ToString()
         {
             string tmp = "Tester name: " + FirstName + " " + LastName + ".\nID: " + Id + ".\nGender: " + Gender + ".\nDate Of Birth: " + DateOfBirth +
                 ".\nPhone number: " + PhoneNumber + ".\nAddress: " + Address + ".\nSeniority: " + Seniority + ".\nType of car: " + TypeOfCar +

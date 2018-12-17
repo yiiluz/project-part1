@@ -103,7 +103,7 @@ namespace Ex1_BE
         public DateTime LastTest { get => lastTest; set => lastTest = value; }
         public List<CarTypeEnum> ExistingLicenses { get => existingLicenses; set => existingLicenses = value; }
 
-        public string ToString()
+         override public string ToString()
         {
             string tmp = "Tester name: " + FirstName + " " + LastName + ".\nID: " + Id + ".\nGender: " + Gender + ".\nDate Of Birth: " + DateOfBirth +
                 ".\nPhone number: " + PhoneNumber + ".\nAddress: " + Address + ".\nType of car: " + TypeOfCar +
