@@ -14,6 +14,7 @@ namespace Ex1_DAL
         void UpdateTesterDetails(Tester T);
         void AddTrainee(Trainee T);
         void RemoveTrainee(Trainee T);
+        void RemoveTest(Test t);
         void UpdateTraineeDetails(Trainee T);
         void AddTest(Test t);
         void UpdateTest(Test t);
