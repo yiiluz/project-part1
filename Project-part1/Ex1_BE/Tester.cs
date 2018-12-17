@@ -74,17 +74,18 @@ namespace Ex1_BE
             set => maxDistance = value;
         }
         public int NumOfTestOfCurrWeek { get => numOfTestOfCurrWeek; set => numOfTestOfCurrWeek = value; }
-        internal GenderEnum Gender
+      internal GenderEnum Gender
         {
             get => gender;
             set => gender = value;
         }
+     
         internal Address Address
         {
             get => address;
             set => address = value;
         }
-        internal CarTypeEnum TypeOfCar
+        public CarTypeEnum TypeOfCar
         {
             get => typeOfCar;
             set => typeOfCar = value;
