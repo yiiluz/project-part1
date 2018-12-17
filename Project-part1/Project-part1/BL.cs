@@ -180,64 +180,7 @@ namespace Ex1_BL
             else
                 return trainee;
         }
-
-
-
-
-
-        public List<Tester> AvailableTeache(DateTime time)
-        {
-            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item. select item;
-            return (List<Tester>)AvailableTesters;
-            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item.select item;
-            return (List<Tester>)AvailableTesters;
-        }
-        public int NumberOfTestsTested(Trainee t)
-        {
-@@ -115,20 + 115,39 @@ public bool IsEntitledToALicenseOrNot(Trainee T, CarTypeEnum car)
-
-            return T.ExistingLicenses.Exists(x => x == car);
-        }
-    public List<Test> TheTestsWillBeDoneToday_Month(DateTime t, bool Byday)
-        public List<Test> TheTestsWillBeDoneToday_Month(DateTime t, bool Byday)
-    {
-        if (Byday == true)
-            if (Byday == true)
-            {
-                var toDay = from item in instance.GetTestsList() where item.DateOfTest.DayOfYear == t.DayOfYear select item;
-                return (List<Test>)toDay;
-            }
-        var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month == t.Month select item;
-        var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month == t.Month select item;
-        return (List<Test>)ThisMonth;
-    }
-    public List<Test> SomeLaggingCondition(Func<Test, bool> func)
-        public List<Test> GetTestsPartialListByPredicate(Func<Test, bool> func)
-    {
-        var StandOnTheCondition = from item in instance.GetTestsList() where func(item) == true select item;
-        return (List<Test>)StandOnTheCondition;
-    }
-    public IGrouping<CarTypeEnum, Tester> GetTestersBySpecialization(bool byOrder = false)
-    {
-        if (byOrder == true)
-        {
-            var TestersGroupsWithOrder = from item in instance.GetTestersList() orderby item.FirstName group item by item.TypeOfCar;
-            return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithOrder;
-        }
-        var TestersGroupsWithoutOrder = from item in instance.GetTestersList() group item by item.TypeOfCar;
-        return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithoutOrder;
-    }
-    public IGrouping<string, Trainee> GetStudentGroupsBySchool(bool byOrder = false)
-    {
-        if (byOrder == true)
-        {
-            var StudentGroupsByAttributeWithOrder = from item in instance.GetTraineeList() orderby item.FirstName group item by item.SchoolName;
-            return (IGrouping<string, Trainee>)StudentGroupsByAttributeWithOrder;
-        }
-        var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList() group item by item.SchoolName;
-        return ()StudentGroupsByAttributeWithOutOrder;
-    }
-    public List<Tester> GetTestersList()
+        public List<Tester> GetTestersList()
         {
             return instance.GetTestersList();
         }
@@ -249,5 +192,56 @@ namespace Ex1_BL
         {
             return instance.GetTestsList();
         }
+        public List<Tester> AvailableTeache(DateTime time)
+        {
+            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item.select item;
+            return (List<Tester>)AvailableTesters;
+        }
+        public int NumberOfTestsTested(Trainee t)
+        {
+            return t.NumOfTests;
+        }
+        public bool IsEntitledToALicenseOrNot(Trainee T, CarTypeEnum car)
+        {
+
+            return T.ExistingLicenses.Exists(x => x == car);
+        }
+        public List<Test> TheTestsWillBeDoneToday_Month(DateTime t, bool Byday)
+        {
+            if (Byday == true)
+            {
+                var toDay = from item in instance.GetTestsList() where item.DateOfTest.DayOfYear == t.DayOfYear select item;
+                return (List<Test>)toDay;
+            }
+            var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month == t.Month select item;
+            return (List<Test>)ThisMonth;
+        }
+        public List<Test> GetTestsPartialListByPredicate(Func<Test, bool> func)
+        {
+            var StandOnTheCondition = from item in instance.GetTestsList() where func(item) == true select item;
+            return (List<Test>)StandOnTheCondition;
+        }
+        public IGrouping<CarTypeEnum, Tester> GetTestersBySpecialization(bool byOrder = false)
+        {
+            if (byOrder == true)
+            {
+                var TestersGroupsWithOrder = from item in instance.GetTestersList() orderby item.FirstName group item by item.TypeOfCar;
+                return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithOrder;
+            }
+            var TestersGroupsWithoutOrder = from item in instance.GetTestersList() group item by item.TypeOfCar;
+            return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithoutOrder;
+        }
+        public IGrouping<string, Trainee> GetStudentGroupsBySchool(bool byOrder = false)
+        {
+            if (byOrder == true)
+            {
+                var StudentGroupsByAttributeWithOrder = from item in instance.GetTraineeList() orderby item.FirstName group item by item.SchoolName;
+                return (IGrouping<string, Trainee>)StudentGroupsByAttributeWithOrder;
+            }
+            var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList() group item by item.SchoolName;
+            return ()StudentGroupsByAttributeWithOutOrder;
+        }
     }
+
+}
 }
