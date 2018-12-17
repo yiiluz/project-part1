@@ -115,7 +115,7 @@ namespace Ex1_BL
 
             return T.ExistingLicenses.Exists(x => x == car);
         }
-        List<Test> TheTestsWillBeDoneToday_Month(DateTime t,bool Byday)
+       public List<Test> TheTestsWillBeDoneToday_Month(DateTime t,bool Byday)
         {
             if (Byday==true)
             {
@@ -125,6 +125,10 @@ namespace Ex1_BL
             var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month== t.Month select item;
             return (List<Test>)ThisMonth;
         }
-
+       public List<Test> SomeLaggingCondition(Func<Test,bool> func)
+        {
+            var StandOnTheCondition = from item in instance.GetTestsList() where func(item) == true select item;
+            return (List<Test>)StandOnTheCondition;
+        }
     }
 }
