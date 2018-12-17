@@ -8,9 +8,9 @@ using Ex1_BE;
 
 namespace Project_part1
 {
-    class BL : IBL
+    class BL //: IBL
     {
-        IDAL instance = Dal_imp.GetInstance();
+        IDAL instance;// = Dal_imp.GetInstance();
         void AddTester(Tester t)
         {
             if (t.DateOfBirth.Year < ((DateTime.Now).Year - 40))
