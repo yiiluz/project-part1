@@ -11,7 +11,7 @@ namespace Ex1_BL
     public class BL : IBL
     {
         IDAL instance = Dal_imp.GetInstance();
-        void AddTester(Tester t)
+        public void AddTester(Tester t)
         {
             if (t.DateOfBirth.Year < ((DateTime.Now).Year - 40))
                 throw new Exception("Can't add the tester " + t.FirstName + " " + t.LastName + ". tester age must be above 40.");
@@ -29,21 +29,29 @@ namespace Ex1_BL
 
             }
         }
-        void RemoveTester(Tester T)
+        public void RemoveTester(Tester T)
         {
-            // כאן אתה אמור לכתוב לוגיקה ולא הבנתי אם אתה אמור לבדוק שאתה אכן מוחק מישהו מהמערכת למה אני בשכבת הדל אמור לבדור זאת שוב 
-            //ככה כתוב בהוראות וזה נשמע לי מסורבל וטיפשי
             try
             {
                 instance.RemoveTester(T);
             }
             catch (KeyNotFoundException)
             {
-
-                throw;
+                throw new KeyNotFoundException("Cant delete Tester " + T.FirstName + " " + T.LastName + " because is not exist on the system.");
             }
         }
-        void AddTrainee(Trainee t)
+        public void RemoveTrainee(Trainee T)
+        {
+            try
+            {
+                instance.RemoveTrainee(T);
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new KeyNotFoundException("Cant delete Trainee " + T.FirstName + " " + T.LastName + " because is not exist on the system.");
+            }
+        }
+        public void AddTrainee(Trainee t)
         {
             if (t.DateOfBirth.Year < ((DateTime.Now).Year - 18))
                 throw new Exception("Can't add the trainee " + t.FirstName + " " + t.LastName + ". trainee age must be above 18.");
@@ -61,7 +69,7 @@ namespace Ex1_BL
 
             }
         }
-        void AddTest(Test t)
+        public void AddTest(Test t)
         {
             var trainee = instance.GetTraineeList().Find(x => x.Id == t.TraineeId);
             var tester = instance.GetTestersList().Find(x => x.Id == t.TesterId);
@@ -89,7 +97,7 @@ namespace Ex1_BL
             if (t.IsPassed)
                 trainee.ExistingLicenses.Add(t.CarType);
             tester.NumOfTestOfCurrWeek++;
-            tester.AvailableWorkTime[(int)t.DateOfTest.DayOfWeek, t.DateOfTest.Hour] = false;
+            tester.AvailableWorkTime[(int)t.DateOfTest.DayOfWeek, t.DateOfTest.Hour % 9] = false;
             try
             {
                 instance.AddTest(t);
@@ -101,9 +109,85 @@ namespace Ex1_BL
             }
 
         }
+        public void UpdateTesterDetails(Tester T)
+        {
+            var testerIndex = instance.GetTestersList().FindIndex(x => x.Id == T.Id);
+            if (testerIndex < 0)
+                throw new KeyNotFoundException("Tester does not exist on the list");
+            else
+            {
+                instance.RemoveTester(instance.GetTestersList().ElementAt(testerIndex));
+                instance.AddTester(T);
+            }
+        }
+        public void UpdateTraineeDetails(Trainee T) //resume that PL can get Trainee object by id, update his deateils, and this func only swap old with new
+        {
+            var traineeIndex = instance.GetTraineeList().FindIndex(x => x.Id == T.Id);
+            if (traineeIndex < 0)
+                throw new KeyNotFoundException("Trainee does not exist on the list");
+            else
+            {
+                instance.RemoveTrainee(instance.GetTraineeList().ElementAt(traineeIndex));
+                instance.AddTrainee(T);
+            }
+        }
+        public void UpdateTest(Test t)
+        {
+            var testIndex = instance.GetTestsList().FindIndex(x => x.TestId == t.TestId);
+            if (testIndex < 0)
+                throw new KeyNotFoundException("Test does not exist on the list, cant update");
+            else
+            {
+                instance.RemoveTest(instance.GetTestsList().ElementAt(testIndex));
+                instance.AddTest(t);
+            }
+        }
+        public void RemoveTest(Test t)
+        {
+            instance.RemoveTest(t);
+        }
+        public int GetIntOfTestID(Test t) //return -1 if there is problem with the test id string
+        {
+            int tmp;
+            bool ok = int.TryParse(t.TestId, out tmp);
+            if (ok)
+                return tmp;
+            else
+                return -1;
+        }
+        public Test GetTestByID(int id)
+        {
+            var test = instance.GetTestsList().Find(x => GetIntOfTestID(x) == id);
+            if (test == null)
+                throw new KeyNotFoundException("This test id does not exist on the list");
+            else
+                return test;
+        }
+        public Tester GetTesterByID(int id)
+        {
+            var tester = instance.GetTestersList().Find(x => x.Id == id);
+            if (tester == null)
+                throw new KeyNotFoundException("This tester id does not exist on the list");
+            else
+                return tester;
+
+        }
+        public Trainee GetTraineeByID(int id)
+        {
+            var trainee = instance.GetTraineeList().Find(x => x.Id == id);
+            if (trainee == null)
+                throw new KeyNotFoundException("This trainee id does not exist on the list");
+            else
+                return trainee;
+        }
+
+
+
+
+
         public List<Tester> AvailableTeache(DateTime time)
         {
-            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item.select item;
+            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour % 9] == true where item. select item;
             return (List<Tester>)AvailableTesters;
         }
         public int NumberOfTestsTested(Trainee t)
@@ -125,29 +209,22 @@ namespace Ex1_BL
             var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month == t.Month select item;
             return (List<Test>)ThisMonth;
         }
-        public List<Test> GetTestsPartialListByPredicate(Func<Test, bool> func)
+        public List<Test> SomeLaggingCondition(Func<Test, bool> func)
         {
             var StandOnTheCondition = from item in instance.GetTestsList() where func(item) == true select item;
             return (List<Test>)StandOnTheCondition;
         }
-        public IGrouping<CarTypeEnum,Tester> GetTestersBySpecialization(bool byOrder = false)
+        public List<Tester> GetTestersList()
         {
-            if (byOrder == true)
-            {
-                var TestersGroupsWithOrder = from item in instance.GetTestersList() orderby item.FirstName group item by item.TypeOfCar;
-                return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithOrder;
-            }
-            var TestersGroupsWithoutOrder = from item in instance.GetTestersList() group item by item.TypeOfCar;
-            return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithoutOrder;
+            return instance.GetTestersList();
         }
-        public IGrouping<string,Trainee> GetStudentGroupsBySchool(bool byOrder = false)
+        public List<Trainee> GetTraineeList()
         {
-            if (byOrder == true)
-            {
-                var StudentGroupsByAttributeWithOrder = from item in instance.GetTraineeList() orderby item.FirstName group item by item.SchoolName;
-                return (IGrouping<string, Trainee>)StudentGroupsByAttributeWithOrder;
-            }
-            var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList()  group item by item.SchoolName;
-            return ()StudentGroupsByAttributeWithOutOrder;
+            return instance.GetTraineeList();
+        }
+        public List<Test> GetTestsList()
+        {
+            return instance.GetTestsList();
+        }
     }
 }

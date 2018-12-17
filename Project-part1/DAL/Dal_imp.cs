@@ -8,32 +8,32 @@ using Ex1_DS;
 namespace Ex1_DAL
 {
     public class Dal_imp : IDAL
-    {     
+    {
         protected Dal_imp() { }
         protected static Dal_imp instance = null;
         public static Dal_imp GetInstance()
         {
-            if (instance==null)
+            if (instance == null)
             {
-                instance = new Dal_imp();            
+                instance = new Dal_imp();
             }
             return instance;
         }
 
-        void  IDAL.AddTest(Test t)
+        void IDAL.AddTest(Test t)
         {
-            if (t.IsHaveId==false)
+            if (t.IsHaveId == false)
             {
                 t.TestId = string.Format("00000000", Configuration.TestId++);
                 DataSource.tests.Add(t);
             }
             else
             {
-                throw  new DuplicateWaitObjectException("The test already exists in the system ");
+                throw new DuplicateWaitObjectException("The test already exists in the system ");
             }
         }
 
-        
+
         void IDAL.AddTester(Tester t)
         {
             if (DataSource.testers.Find(x => x.Id == t.Id) != null)
@@ -48,7 +48,7 @@ namespace Ex1_DAL
 
         void IDAL.AddTrainee(Trainee t)
         {
-            if (DataSource.trainees.Find(x=> x.Id == t.Id) != null)
+            if (DataSource.trainees.Find(x => x.Id == t.Id) != null)
             {
                 throw new DuplicateWaitObjectException("This trainee is already registered in the system");
             }
@@ -81,7 +81,7 @@ namespace Ex1_DAL
         {
             if (DataSource.testers.Find(x => x.Id == T.Id) != null)
             {
-               DataSource.testers.Remove(DataSource.testers.Find(x => x.Id == T.Id));
+                DataSource.testers.Remove(DataSource.testers.Find(x => x.Id == T.Id));
             }
             else
             {
@@ -104,7 +104,7 @@ namespace Ex1_DAL
         void IDAL.UpdateTest(Test t)
         {
             int index = DataSource.tests.FindIndex(x => x.TestId == t.TestId);
-            if(index >-1)
+            if (index > -1)
             {
                 DataSource.tests[index] = t;
             }
@@ -119,11 +119,11 @@ namespace Ex1_DAL
             int index = DataSource.testers.FindIndex(x => x.Id == T.Id);
             if (index > -1)
             {
-                DataSource.testers[index] =T;
+                DataSource.testers[index] = T;
             }
             else
             {
-                throw new Exception("This tester does not exist in the system");
+                throw new KeyNotFoundException("This tester does not exist in the system");
             }
         }
 
