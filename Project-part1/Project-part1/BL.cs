@@ -239,7 +239,7 @@ namespace Ex1_BL
                 return (IGrouping<string, Trainee>)StudentGroupsByAttributeWithOrder;
             }
             var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList() group item by item.SchoolName;
-            //return ()StudentGroupsByAttributeWithOutOrder;
+            return ()StudentGroupsByAttributeWithOutOrder;
         }
     }
 
