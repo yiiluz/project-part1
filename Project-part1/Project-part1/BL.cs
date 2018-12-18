@@ -192,7 +192,7 @@ namespace Ex1_BL
         {
             return instance.GetTestsList();
         }
-        public List<Tester> AvailableTeache(DateTime time)
+        public List<Tester> AvailableTeacher(DateTime time)
         {
             var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item.select item;
             return (List<Tester>)AvailableTesters;
@@ -239,8 +239,17 @@ namespace Ex1_BL
                 return (IGrouping<string, Trainee>)StudentGroupsByAttributeWithOrder;
             }
             var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList() group item by item.SchoolName;
-            return ()StudentGroupsByAttributeWithOutOrder;
+            return (IGrouping<string, Trainee>)StudentGroupsByAttributeWithOutOrder;
+        }
+        public IGrouping<string, Trainee> GetStudentGroupsByTeacherName(bool byOrder = false)
+        {
+            if (byOrder == true)
+            {
+                var StudentGroupsByTeacherNameWithOrder = from item in instance.GetTraineeList() orderby item.FirstName group item by item.SchoolName;
+                return (IGrouping<string, Trainee>)StudentGroupsByTeacherNameWithOrder;
+            }
+            var StudentGroupsByTeacherNameWithOutOrder = from item in instance.GetTraineeList() group item by item.SchoolName;
+            return (IGrouping<string, Trainee>)StudentGroupsByTeacherNameWithOutOrder;
         }
     }
-
 }
