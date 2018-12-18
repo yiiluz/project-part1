@@ -26,6 +26,7 @@ namespace Ex1_BE
         DateTime lastTest;
         public List<CarTypeEnum> existingLicenses;
 
+        public Trainee() { }
         public int Id
         {
             get => id;
