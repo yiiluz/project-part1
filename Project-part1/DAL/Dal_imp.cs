@@ -139,5 +139,16 @@ namespace Ex1_DAL
                 throw new KeyNotFoundException("this trainee does not exist in the system");
             }
         }
+        void IDAL.RemoveTest(Test t)
+        {
+            if(DataSource.tests.Find(x => x.TestId== t.TestId) != null)
+            {
+                DataSource.tests.Remove(DataSource.tests.Find(x => x.TestId == t.TestId));
+            }
+            else
+            {
+                throw new KeyNotFoundException("This test does not exist in the system");
+            }
+        }
     }
 }
