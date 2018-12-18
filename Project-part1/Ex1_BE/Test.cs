@@ -21,6 +21,7 @@ namespace Ex1_BE
         bool correctSpeed;
         bool isPassed;
         bool isHaveId;
+        bool isTesterUpdateStatus;
 
 
         public string TestId
@@ -80,6 +81,7 @@ namespace Ex1_BE
             set => isHaveId = value;
         }
         public CarTypeEnum CarType { get => carType; set => carType = value; }
+        public bool IsTesterUpdateStatus { get => isTesterUpdateStatus; set => isTesterUpdateStatus = value; }
         internal Address StartTestAddress
         {
             get => startTestAddress;

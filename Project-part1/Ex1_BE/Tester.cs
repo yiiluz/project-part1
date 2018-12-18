@@ -65,8 +65,8 @@ namespace Ex1_BE
         }
         public bool[,] AvailableWorkTime
         {
-            get => availbleWorkTime;
-            set => availbleWorkTime = value;
+            get => availableWorkTime;
+            set => availableWorkTime = value;
         }
         public double MaxDistance
         {
