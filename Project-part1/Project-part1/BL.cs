@@ -108,12 +108,6 @@ namespace Ex1_BL
                 throw;
             }
 
-<<<<<<< HEAD
-        }
-        public List<Tester> AvailableTeache(DateTime time)
-        {
-            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item.select item;
-=======
         }
         public void UpdateTesterDetails(Tester T)
         {
@@ -186,15 +180,21 @@ namespace Ex1_BL
             else
                 return trainee;
         }
-
-
-
-
-
+        public List<Tester> GetTestersList()
+        {
+            return instance.GetTestersList();
+        }
+        public List<Trainee> GetTraineeList()
+        {
+            return instance.GetTraineeList();
+        }
+        public List<Test> GetTestsList()
+        {
+            return instance.GetTestsList();
+        }
         public List<Tester> AvailableTeache(DateTime time)
         {
-            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour % 9] == true where item. select item;
->>>>>>> f01c316db4b248511fbb7a2bc5c4addcb4c04242
+            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item.select item;
             return (List<Tester>)AvailableTesters;
         }
         public int NumberOfTestsTested(Trainee t)
@@ -216,17 +216,12 @@ namespace Ex1_BL
             var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month == t.Month select item;
             return (List<Test>)ThisMonth;
         }
-//<<<<<<< HEAD
         public List<Test> GetTestsPartialListByPredicate(Func<Test, bool> func)
-//=======
-        public List<Test> SomeLaggingCondition(Func<Test, bool> func)
-//>>>>>>> f01c316db4b248511fbb7a2bc5c4addcb4c04242
         {
             var StandOnTheCondition = from item in instance.GetTestsList() where func(item) == true select item;
             return (List<Test>)StandOnTheCondition;
         }
-//<<<<<<< HEAD
-        public IGrouping<CarTypeEnum,Tester> GetTestersBySpecialization(bool byOrder = false)
+        public IGrouping<CarTypeEnum, Tester> GetTestersBySpecialization(bool byOrder = false)
         {
             if (byOrder == true)
             {
@@ -236,28 +231,16 @@ namespace Ex1_BL
             var TestersGroupsWithoutOrder = from item in instance.GetTestersList() group item by item.TypeOfCar;
             return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithoutOrder;
         }
-        public IGrouping<string,Trainee> GetStudentGroupsBySchool(bool byOrder = false)
+        public IGrouping<string, Trainee> GetStudentGroupsBySchool(bool byOrder = false)
         {
             if (byOrder == true)
             {
                 var StudentGroupsByAttributeWithOrder = from item in instance.GetTraineeList() orderby item.FirstName group item by item.SchoolName;
                 return (IGrouping<string, Trainee>)StudentGroupsByAttributeWithOrder;
             }
-            var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList()  group item by item.SchoolName;
+            var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList() group item by item.SchoolName;
             return ()StudentGroupsByAttributeWithOutOrder;
-//=======
-        public List<Tester> GetTestersList()
-        {
-            return instance.GetTestersList();
         }
-        public List<Trainee> GetTraineeList()
-        {
-            return instance.GetTraineeList();
-        }
-        public List<Test> GetTestsList()
-        {
-            return instance.GetTestsList();
-        }
-//>>>>>>> f01c316db4b248511fbb7a2bc5c4addcb4c04242
     }
+
 }
