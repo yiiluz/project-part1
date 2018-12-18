@@ -192,10 +192,13 @@ namespace Ex1_BL
         {
             return instance.GetTestsList();
         }
-        public List<Tester> AvailableTeache(DateTime time)
+        public IEnumerable<Tester> AvailableTeacher(DateTime time)
         {
-            var AvailableTesters = from item in instance.GetTestersList() where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true where item.select item;
-            return (List<Tester>)AvailableTesters;
+            var AvailableTesters = from item in instance.GetTestersList()
+                                   orderby item.LastName,item.FirstName
+                                   where item.AvailableWorkTime[(int)time.DayOfWeek, time.Hour] == true
+                                  select item;
+            return AvailableTesters;
         }
         public int NumberOfTestsTested(Trainee t)
         {
@@ -206,41 +209,87 @@ namespace Ex1_BL
 
             return T.ExistingLicenses.Exists(x => x == car);
         }
-        public List<Test> TheTestsWillBeDoneToday_Month(DateTime t, bool Byday)
+        public IEnumerable<Test> TheTestsWillBeDoneToday_Month(DateTime t, bool Byday)
         {
             if (Byday == true)
             {
-                var toDay = from item in instance.GetTestsList() where item.DateOfTest.DayOfYear == t.DayOfYear select item;
-                return (List<Test>)toDay;
+                var toDay = from item in instance.GetTestsList()
+                            orderby item.TestId
+                            where item.DateOfTest.DayOfYear == t.DayOfYear
+                            select item;
+                return toDay;
             }
-            var ThisMonth = from item in instance.GetTestsList() where item.DateOfTest.Month == t.Month select item;
-            return (List<Test>)ThisMonth;
+            var ThisMonth = from item in instance.GetTestsList()
+                            orderby item.TestId
+                            where item.DateOfTest.Month == t.Month
+                            select item;
+            return ThisMonth;
         }
-        public List<Test> GetTestsPartialListByPredicate(Func<Test, bool> func)
+        public IEnumerable<Test> GetTestsPartialListByPredicate(Func<Test, bool> func)
         {
-            var StandOnTheCondition = from item in instance.GetTestsList() where func(item) == true select item;
-            return (List<Test>)StandOnTheCondition;
+            var StandOnTheCondition = from item in instance.GetTestsList()
+                                      orderby item.TestId
+                                      where func(item) == true
+                                      select item;
+            return StandOnTheCondition;
         }
-        public IGrouping<CarTypeEnum, Tester> GetTestersBySpecialization(bool byOrder = false)
+        public IEnumerable<IGrouping<CarTypeEnum, Tester>> GetTestersBySpecialization(bool byOrder = false)
         {
             if (byOrder == true)
             {
-                var TestersGroupsWithOrder = from item in instance.GetTestersList() orderby item.FirstName group item by item.TypeOfCar;
-                return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithOrder;
+                var TestersGroupsWithOrder = from item in instance.GetTestersList()
+                                             orderby item.LastName,item.FirstName
+                                             group item by item.TypeOfCar 
+                                             into g orderby g.Key select g;
+                return TestersGroupsWithOrder;
             }
-            var TestersGroupsWithoutOrder = from item in instance.GetTestersList() group item by item.TypeOfCar;
-            return (IGrouping<CarTypeEnum, Tester>)TestersGroupsWithoutOrder;
+            var TestersGroupsWithoutOrder = from item in instance.GetTestersList()
+                                            group item by item.TypeOfCar;
+            return TestersGroupsWithoutOrder;
         }
-        public IGrouping<string, Trainee> GetStudentGroupsBySchool(bool byOrder = false)
+        public IEnumerable<IGrouping<string, Trainee>> GetStudentGroupsBySchool(bool byOrder = false)
         {
             if (byOrder == true)
             {
-                var StudentGroupsByAttributeWithOrder = from item in instance.GetTraineeList() orderby item.FirstName group item by item.SchoolName;
-                return (IGrouping<string, Trainee>)StudentGroupsByAttributeWithOrder;
+                var StudentGroupsByAttributeWithOrder = from item in instance.GetTraineeList()
+                                                        orderby item.LastName,item.FirstName
+                                                        group item by item.SchoolName 
+                                                        into g orderby g.Key select g;
+                return StudentGroupsByAttributeWithOrder;
             }
-            var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList() group item by item.SchoolName;
-            return ()StudentGroupsByAttributeWithOutOrder;
+            var StudentGroupsByAttributeWithOutOrder = from item in instance.GetTraineeList()
+                                                       group item by item.SchoolName;
+
+            return StudentGroupsByAttributeWithOutOrder;
+        }
+        public IEnumerable<IGrouping<string, Trainee>> GetStudentGroupsByTeacher(bool byOrder = false)
+        {
+            if (byOrder == true)
+            {
+                var StudentGroupsByTeacherWithOrder = from item in instance.GetTraineeList()
+                                                      orderby item.LastName,item.FirstName
+                                                      group item by item.SchoolName 
+                                                      into  g orderby g.Key select g;           
+                return StudentGroupsByTeacherWithOrder;
+            }
+            var StudentGroupsByTeacherWithOutOrder = from item in instance.GetTraineeList()
+                                                     group item by item.SchoolName;
+            return StudentGroupsByTeacherWithOutOrder;
+        }
+        public IEnumerable<IGrouping<int, Trainee>>GetStudentsGroupedaccordingByNumOfTests(bool byOrder = false)
+        {
+            if (byOrder == true)
+            {
+                var StudentsGroupedaccordingByNumOfTestsWithOrder = from item in instance.GetTraineeList()
+                                                                    orderby item.LastName,item.FirstName
+                                                                    group item by item.NumOfTests 
+                                                                    into g orderby g.Key select g;
+                return StudentsGroupedaccordingByNumOfTestsWithOrder;
+            }
+            var StudentsGroupedaccordingByNumOfTestsWithOutrder = from item in instance.GetTraineeList()
+                                                                  group item by item.NumOfTests;
+            return StudentsGroupedaccordingByNumOfTestsWithOutrder;
+
         }
     }
-
 }
