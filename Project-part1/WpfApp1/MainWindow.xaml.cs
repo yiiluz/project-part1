@@ -13,24 +13,31 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Ex1_BE;
-
-namespace WpfApp1
+using Ex1_BL;
+namespace Ex1_PL
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static bool isAddTraineeWindowOpen = true;
         public MainWindow()
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        BL bl = new BL();
+        private void Button_Click_AddTrainee(object sender, RoutedEventArgs e)
         {
             Trainee trainee = new Trainee();
-            TextBox textBox = new TextBox();
-            string tmpe = textBox.Text;
+            AddTraineeWindow addTraineeWindow = new AddTraineeWindow();
+            addTraineeWindow.Show();
+        }
+
+        private void Button_Click_GetTraineeByID(object sender, RoutedEventArgs e)
+        {
+            GetTraineeByIdWindow getTraineeByIdWindow = new GetTraineeByIdWindow();
+            getTraineeByIdWindow.Show();
         }
     }
 }

@@ -8,8 +8,8 @@ namespace Ex1_DS
 {
     public class DataSource
     {    
-        public static List<Test> tests;
-        public static List<Tester> testers;
-        public static List<Trainee> trainees;
+        public static List<Test> tests = new List<Test>();
+        public static List<Tester> testers = new List<Tester>();
+        public static List<Trainee> trainees = new List<Trainee>();
     }
 }

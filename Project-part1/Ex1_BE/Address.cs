@@ -11,6 +11,14 @@ namespace Ex1_BE
         string city;
         string street;
         int buildingNumber;
+
+        public Address(string c, string s, int n)
+        {
+            city = c;
+            street = s;
+            buildingNumber = n;
+
+        }
         string City
         {
             get
@@ -46,7 +54,7 @@ namespace Ex1_BE
         }
         public string ToString()
         {
-            string tmp = "City: " + City + ".\nStreet: " + Street + ". Building number: " + BuildingNumber + ".\n";
+            string tmp = "\nCity: " + City + ".\nStreet: " + Street + ".\nBuilding number: " + BuildingNumber + ".\n";
             return tmp;
         }
     }
