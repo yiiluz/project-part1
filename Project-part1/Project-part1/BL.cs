@@ -126,7 +126,7 @@ namespace Ex1_BL
             var traineeIndex = instance.GetTraineeList().FindIndex(x => x.Id == T.Id);
             if (traineeIndex < 0)
                 throw new KeyNotFoundException("Trainee does not exist on the list");
-            else
+            else 
             {
                 instance.RemoveTrainee(instance.GetTraineeList().ElementAt(traineeIndex));
                 instance.AddTrainee(T);
