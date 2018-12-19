@@ -11,5 +11,7 @@ namespace Ex1_DS
         public static List<Test> tests = new List<Test>();
         public static List<Tester> testers = new List<Tester>();
         public static List<Trainee> trainees = new List<Trainee>();
+
+
     }
 }
