@@ -1,0 +1,73 @@
+﻿<Window x:Class="Ex1_PL.AddTraineeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ex1_PL"
+        mc:Ignorable="d"
+        Title="AddTraineeWindow" Height="500" Width="550">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="142*"/>
+            <ColumnDefinition Width="203*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="ID" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="FirstName" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="LastName" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="BirthDate" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="Gender" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="PhoneNumber" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="SchoolName" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="TeacherName" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="NumOfLessons" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="NumOfTests" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="LastTestDate" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="City" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="Street" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <TextBox Name="BuildingNumber" Grid.Row="13" Grid.Column="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2" />
+        <Label Name="IDL" Grid.Row="0" Grid.Column="0" Content="Enter Trainee ID:" FontSize="15"/>
+        <Label Name="FirstNameL" Grid.Row="1" Grid.Column="0" Content="Enter Trainee First name:" FontSize="15"/>
+        <Label Name="LastNameL" Grid.Row="2" Grid.Column="0" Content="Enter Trainee Last name:" FontSize="15"/>
+        <Label Name="BirthDateL" Grid.Row="3" Grid.Column="0" Content="Enter Date of Birth" FontSize="15"/>
+        <Label Name="GenderL" Grid.Row="4" Grid.Column="0" Content="Enter Trainee Gender" FontSize="15"/>
+        <Label Name="PhoneNumberL" Grid.Row="5" Grid.Column="0" Content="Enter Phone number:" FontSize="15"/>
+        <Label Name="SchoolNameL" Grid.Row="6" Grid.Column="0" Content="Enter Drive School name:" FontSize="15"/>
+        <Label Name="TeacherNameL" Grid.Row="7" Grid.Column="0" Content="Enter Teachers name:" FontSize="15"/>
+        <Label Name="NumOfLessonsL" Grid.Row="8" Grid.Column="0" Content="Enter sum of lessons:" FontSize="15"/>
+        <Label Name="NumOfTestsL" Grid.Row="9" Grid.Column="0" Content="Enter num of Tests:" FontSize="15"/>
+        <Label Name="LastTestDateL" Grid.Row="10" Grid.Column="0" Content="Enter last test date:" FontSize="15"/>
+        <Label Name="CityL" Grid.Row="11" Grid.Column="0" Content="Enter Treaniee City:" FontSize="15"/>
+        <Label Name="StreetL" Grid.Row="12" Grid.Column="0" Content="Enter Treainee Street:" FontSize="15"/>
+        <Label Name="BuildingNumberL" Grid.Row="13" Grid.Column="0" Content="Enter Trainee Building number:" FontSize="15"/>
+        <CheckBox Name="Bus" Content="Bus" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="14" VerticalAlignment="Top" Margin="5"/>
+        <CheckBox Name="Private" Content="Private" Grid.Column="1" HorizontalAlignment="right" Grid.Row="14" VerticalAlignment="Top" Margin="5"/>
+        <CheckBox Name="TruckUnlimited" Content="Truck Unlimited" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="14" VerticalAlignment="Top" Margin="5"/>
+        <CheckBox Name="MotorCycle" Content="Motor Cycle" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="14" VerticalAlignment="Center" Margin="94,27,105.2,10.4" Width="92"/>
+        <CheckBox Name="Truck12" Content="Truck 12" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="14" VerticalAlignment="Center" Margin="5,25.4,0,9.2"/>
+        <Label Content="Choose Existing licenses:" HorizontalAlignment="Left"  Grid.Row="14" FontSize="15"/>
+        <Button Content="Finish" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.Row="16" VerticalAlignment="Stretch" Margin="10" Click="Button_Click"/>
+        <CheckBox Name="isDidTest" Content="Fill if trainee already did test" Margin="1" Grid.Row="15" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+
+
+
+    </Grid>
+</Window>
