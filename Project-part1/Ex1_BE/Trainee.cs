@@ -106,8 +106,11 @@ namespace Ex1_BE
 
         override public string ToString()
         {
-            string tmp = "Tester name: " + FirstName + " " + LastName + ".\nID: " + Id + ".\nGender: " + Gender + ".\nDate Of Birth: " + DateOfBirth +
-                ".\nPhone number: " + PhoneNumber + ".\nAddress: " + Address + ".\nExisting linsences: " + ExistingLicenses.ToString() +
+            string existLin = "";
+            foreach (var item in ExistingLicenses)
+                existLin += (item.ToString() + " ");
+            string tmp = "Trainee name: " + FirstName + " " + LastName + ".\nID: " + Id + ".\nGender: " + Gender + ".\nDate Of Birth: " + DateOfBirth.Date +
+                ".\nPhone number: " + PhoneNumber + ".\nAddress: " + Address.ToString() + ".\nExisting linsences: " + existLin +
                 ".\nType of Gearbox: " + TypeOfGearbox + ".\nSchool name: " + SchoolName +
                 ".\nTeacher name: " + TeacherName + ".\nSum of pased lessons: " + numOfFinishedLessons + ".\n";
             return tmp;

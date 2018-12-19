@@ -29,7 +29,7 @@
         <Button Content="View All Tests" FontSize="20" Margin="5" Grid.Row="5"/>
         <Button Content="Button" FontSize="20" Margin="5" Grid.Row="6"/>
         <Button Content="Button" FontSize="20" Margin="5" Grid.Row="7"/>
-        <Button Content="Button" FontSize="20" Grid.Column="1" Grid.Row="0" Margin="5"/>
+        <Button Content="Get Trainee Deteils By ID" FontSize="20" Grid.Column="1" Grid.Row="0" Margin="5" Click="Button_Click_GetTraineeByID"/>
         <Button Content="Button" FontSize="20" Grid.Column="1" Margin="5" Grid.Row="1"/>
         <Button Content="Button" FontSize="20" Grid.Column="1" Margin="5" Grid.Row="2"/>
         <Button Content="Button" FontSize="20" Grid.Column="1" Margin="5" Grid.Row="3"/>
