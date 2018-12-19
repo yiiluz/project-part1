@@ -12,19 +12,19 @@ namespace Ex1_BE
         int id;
         string lastName;
         string firstName;
-        DateTime dateOfBirth;
+        DateTime dateOfBirth = new DateTime();
         GenderEnum gender;
         int phoneNumber;
-        Address address;
-        CarTypeEnum typeOfCar;
+        Address address = new Address();
+        //CarTypeEnum typeOfCar;
         GearboxTypeEnum typeOfGearbox;
         string schoolName;
         string teacherName;
         int numOfFinishedLessons;
         int numOfTests;
         bool isAlreadyDidTest;
-        DateTime lastTest;
-        public List<CarTypeEnum> existingLicenses;
+        DateTime lastTest = new DateTime();
+        public List<CarTypeEnum> existingLicenses = new List<CarTypeEnum>();
 
         public Trainee() { }
         public int Id
@@ -71,22 +71,22 @@ namespace Ex1_BE
             get => numOfFinishedLessons;
             set => numOfFinishedLessons = value;
         }
-        internal CarTypeEnum TypeOfCar
-        {
-            get => typeOfCar;
-            set => typeOfCar = value;
-        }
-        internal GearboxTypeEnum TypeOfGearbox
+        //internal CarTypeEnum TypeOfCar
+        //{
+        //    get => typeOfCar;
+        //    set => typeOfCar = value;
+        //}
+        public GearboxTypeEnum TypeOfGearbox
         {
             get => typeOfGearbox;
             set => typeOfGearbox = value;
         }
-        internal Address Address
+        public Address Address
         {
             get => address;
             set => address = value;
         }
-        internal GenderEnum Gender
+        public GenderEnum Gender
         {
             get => gender;
             set => gender = value;
@@ -107,7 +107,7 @@ namespace Ex1_BE
         override public string ToString()
         {
             string tmp = "Tester name: " + FirstName + " " + LastName + ".\nID: " + Id + ".\nGender: " + Gender + ".\nDate Of Birth: " + DateOfBirth +
-                ".\nPhone number: " + PhoneNumber + ".\nAddress: " + Address + ".\nType of car: " + TypeOfCar +
+                ".\nPhone number: " + PhoneNumber + ".\nAddress: " + Address + ".\nExisting linsences: " + ExistingLicenses.ToString() +
                 ".\nType of Gearbox: " + TypeOfGearbox + ".\nSchool name: " + SchoolName +
                 ".\nTeacher name: " + TeacherName + ".\nSum of pased lessons: " + numOfFinishedLessons + ".\n";
             return tmp;

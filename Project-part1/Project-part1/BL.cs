@@ -11,6 +11,7 @@ namespace Ex1_BL
     public class BL : IBL
     {
         IDAL instance = Dal_imp.GetInstance();
+        public BL() { }
         public void AddTester(Tester t)
         {
             if (t.DateOfBirth.Year < ((DateTime.Now).Year - 40))
@@ -53,7 +54,7 @@ namespace Ex1_BL
         }
         public void AddTrainee(Trainee t)
         {
-            if (t.DateOfBirth.Year < ((DateTime.Now).Year - 18))
+            if ((DateTime.Now.AddYears(-18)) < t.DateOfBirth)
                 throw new Exception("Can't add the trainee " + t.FirstName + " " + t.LastName + ". trainee age must be above 18.");
             else
             {

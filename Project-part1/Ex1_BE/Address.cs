@@ -11,6 +11,14 @@ namespace Ex1_BE
         string city;
         string street;
         int buildingNumber;
+
+        public Address(string c, string s, int n)
+        {
+            city = c;
+            street = s;
+            buildingNumber = n;
+
+        }
         string City
         {
             get
