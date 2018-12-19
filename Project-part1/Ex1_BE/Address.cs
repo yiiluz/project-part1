@@ -52,7 +52,7 @@ namespace Ex1_BE
                 buildingNumber = value;
             }
         }
-        public string ToString()
+        public override string ToString()
         {
             string tmp = "\nCity: " + City + ".\nStreet: " + Street + ".\nBuilding number: " + BuildingNumber + ".\n";
             return tmp;
