@@ -1,0 +1,65 @@
+﻿<Window x:Class="WpfApp1.WindowTester"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="WindowTester" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="35*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="label" Content="Enter ID:" VerticalAlignment="Top"/>
+            <Label x:Name="label1" Content="Enter first name:" Grid.Row="1"  VerticalAlignment="Top"/>
+            <Label x:Name="label2" Content="Enter lest name:"   Grid.Row="2" VerticalAlignment="Top"/>
+            <Label x:Name="label3" Content="Enter Date of Birth:" Grid.Row="3" VerticalAlignment="Top"/>
+            <Label x:Name="label4" Content="Entet phone number:" Grid.Row="4" VerticalAlignment="Top"/>
+            <Label x:Name="label5" Content="Seniority"  Grid.Row="5" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="ID" Grid.Column="1" Text="00000000" VerticalAlignment="Top" TextInput="IDinput" />
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <Grid Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+                <RowDefinition Height= "*"/>
+            </Grid.RowDefinitions>
+        </Grid>
+     
+    </Grid>
+</Window>
